@@ -11,11 +11,11 @@ Battleship is a classic strategy game where players try to sink each other's shi
 ### Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/battleship-game.git
+   git clone https://github.com/msaharan/thebattlleshipgame_xebia_hackathon.git
    ```
 2. Navigate to the project directory:
 ```
-cd battleship-game
+cd thebattlleshipgame_xebia_hackathon
 ```
 ## Running the Game
 To start the game, run:
