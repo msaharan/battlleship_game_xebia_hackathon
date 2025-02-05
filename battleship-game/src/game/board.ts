@@ -1,53 +1,40 @@
-class Board {
-    private grid: string[][];
-    private size: number;
+import { Ship } from './ship';
 
-    constructor(size: number) {
+export class Board {
+    size: number;
+    ships: Ship[];
+
+    constructor(size: number = 10) {
         this.size = size;
-        this.grid = this.initializeBoard();
+        this.ships = [];
     }
 
-    initializeBoard(): string[][] {
-        return Array.from({ length: this.size }, () => Array(this.size).fill('~'));
+    initializeBoard() {
+        // Initialize the board if needed
     }
 
-    placeShip(startX: number, startY: number, length: number, isHorizontal: boolean): boolean {
-        if (this.canPlaceShip(startX, startY, length, isHorizontal)) {
-            for (let i = 0; i < length; i++) {
-                if (isHorizontal) {
-                    this.grid[startY][startX + i] = 'S';
-                } else {
-                    this.grid[startY + i][startX] = 'S';
-                }
-            }
-            return true;
-        }
-        return false;
-    }
-
-    private canPlaceShip(startX: number, startY: number, length: number, isHorizontal: boolean): boolean {
+    placeShip(x: number, y: number, length: number, isHorizontal: boolean): boolean {
+        const coordinates = [];
         for (let i = 0; i < length; i++) {
-            const x = isHorizontal ? startX + i : startX;
-            const y = isHorizontal ? startY : startY + i;
-
-            if (x >= this.size || y >= this.size || this.grid[y][x] !== '~') {
+            const coord = isHorizontal ? { x: x + i, y } : { x, y: y + i };
+            if (coord.x >= this.size || coord.y >= this.size) {
                 return false;
             }
+            coordinates.push(coord);
         }
+
+        const newShip = new Ship(length, coordinates);
+        this.ships.push(newShip);
         return true;
     }
 
     checkHit(x: number, y: number): boolean {
-        if (this.grid[y][x] === 'S') {
-            this.grid[y][x] = 'H'; // Mark as hit
-            return true;
+        for (const ship of this.ships) {
+            if (ship.hit(x, y)) {
+                return true;
+            }
         }
-        this.grid[y][x] = 'M'; // Mark as miss
         return false;
-    }
-
-    getGrid(): string[][] {
-        return this.grid;
     }
 }
 

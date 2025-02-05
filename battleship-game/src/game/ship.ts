@@ -1,26 +1,25 @@
-class Ship {
+export class Ship {
     length: number;
-    coordinates: number[][];
-    hits: number;
+    coordinates: { x: number, y: number }[];
+    hits: Set<string>;
 
-    constructor(length: number, coordinates: number[][]) {
+    constructor(length: number, coordinates: { x: number, y: number }[]) {
         this.length = length;
         this.coordinates = coordinates;
-        this.hits = 0;
+        this.hits = new Set();
     }
 
-    hit(coordinate: number[]): boolean {
-        for (let i = 0; i < this.coordinates.length; i++) {
-            if (this.coordinates[i][0] === coordinate[0] && this.coordinates[i][1] === coordinate[1]) {
-                this.hits++;
-                return true;
-            }
+    hit(x: number, y: number): boolean {
+        const coord = `${x},${y}`;
+        if (this.coordinates.some(c => c.x === x && c.y === y)) {
+            this.hits.add(coord);
+            return true;
         }
         return false;
     }
 
     isSunk(): boolean {
-        return this.hits >= this.length;
+        return this.hits.size === this.length;
     }
 }
 

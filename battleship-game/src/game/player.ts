@@ -1,3 +1,6 @@
+import Ship from './ship';
+import Board from './board';
+
 export class Player {
     name: string;
     ships: Ship[];
@@ -8,14 +11,14 @@ export class Player {
     }
 
     makeMove(board: Board, coordinates: { x: number, y: number }): boolean {
-        return board.checkHit(coordinates);
+        return board.checkHit(coordinates.x, coordinates.y);
     }
 
     checkWin(): boolean {
         return this.ships.every(ship => ship.isSunk());
     }
 
-    addShip(ship: Ship): void {
+    addShip(ship: Ship): void {``
         this.ships.push(ship);
     }
 }
