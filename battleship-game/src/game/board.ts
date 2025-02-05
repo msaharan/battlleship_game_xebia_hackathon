@@ -3,10 +3,14 @@ import { Ship } from './ship';
 export class Board {
     size: number;
     ships: Ship[];
+    hits: Set<string>;
+    misses: Set<string>;
 
     constructor(size: number = 10) {
         this.size = size;
         this.ships = [];
+        this.hits = new Set();
+        this.misses = new Set();
     }
 
     initializeBoard() {
@@ -31,10 +35,28 @@ export class Board {
     checkHit(x: number, y: number): boolean {
         for (const ship of this.ships) {
             if (ship.hit(x, y)) {
+                this.hits.add(`${x},${y}`);
                 return true;
             }
         }
+        this.misses.add(`${x},${y}`);
         return false;
+    }
+
+    getBoardState(): string[][] {
+        const boardState = Array.from({ length: this.size }, () => Array(this.size).fill(' '));
+
+        this.hits.forEach(hit => {
+            const [x, y] = hit.split(',').map(Number);
+            boardState[y][x] = 'X';
+        });
+
+        this.misses.forEach(miss => {
+            const [x, y] = miss.split(',').map(Number);
+            boardState[y][x] = 'O';
+        });
+
+        return boardState;
     }
 }
 

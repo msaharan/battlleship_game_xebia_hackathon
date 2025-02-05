@@ -50,6 +50,9 @@ npm start
 2. Players take turns guessing the location of the opponent's ships.
 3. The game continues until one player sinks all of the opponent's ships.
 
+### Note on Input Duplication
+When specifying the coordinates for your ships, you may notice that characters are duplicated. For example, when you try to input the position `5 5 h`, it may display as `55 55 hh`. This is a known bug that we accept for now. Please continue with your input as usual.
+
 ## Contributing
 Feel free to submit issues or pull requests to improve the game!
 
