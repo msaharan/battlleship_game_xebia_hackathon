@@ -1,60 +1,80 @@
 # Battleship Game
 
 ## Overview
-Battleship is a classic strategy game where players try to sink each other's ships by guessing their locations on a grid. This project is a digital version of the game, implemented in TypeScript.
-
-## Project Structure
-```
-battleship-game
-├── src
-│   ├── main.ts          # Entry point of the application
-│   ├── game
-│   │   ├── board.ts     # Manages the game board
-│   │   ├── ship.ts      # Represents a ship in the game
-│   │   └── player.ts    # Represents a player in the game
-│   └── utils
-│       └── helpers.ts   # Utility functions for the game
-├── package.json         # npm configuration file
-├── tsconfig.json        # TypeScript configuration file
-└── README.md            # Project documentation
-```
+Battleship is a classic strategy game where players try to sink each other's ships by guessing their locations on a grid. This project is a digital version of the game, implemented in Python.
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js
-- npm
+- Python 3.x
 
 ### Installation
 1. Clone the repository:
-   ```
+   ```sh
    git clone https://github.com/yourusername/battleship-game.git
    ```
 2. Navigate to the project directory:
-   ```
-   cd battleship-game
-   ```
-3. Install the dependencies:
-   ```
-   npm install
-   ```
-
-### Running the Game
+```
+cd battleship-game
+```
+## Running the Game
 To start the game, run:
 ```
-npm start
+python src/main.py
 ```
+## How to Play
+Each player places their ships on the board.
+Players take turns guessing the location of the opponent's ships.
+The game continues until one player sinks all of the opponent's ships.
 
-### How to Play
-1. Each player places their ships on the board.
-2. Players take turns guessing the location of the opponent's ships.
-3. The game continues until one player sinks all of the opponent's ships.
-
-### Note on Input Duplication
-When specifying the coordinates for your ships, you may notice that characters are duplicated. For example, when you try to input the position `5 5 h`, it may display as `55 55 hh`. This is a known bug that we accept for now. Please continue with your input as usual.
-
+## Example
+```
+Enter your name: Player1
+Place your Carrier (length 5). Enter start coordinates (x y) and orientation (h/v): 0 0 h
+Place your Battleship (length 4). Enter start coordinates (x y) and orientation (h/v): 1 0 h
+Place your Cruiser (length 3). Enter start coordinates (x y) and orientation (h/v): 2 0 h
+Place your Submarine (length 3). Enter start coordinates (x y) and orientation (h/v): 3 0 h
+Place your Destroyer (length 2). Enter start coordinates (x y) and orientation (h/v): 4 0 h
+  0 1 2 3 4 5 6 7 8 9
+0 X X X X X          
+1 X X X X            
+2 X X X              
+3 X X X              
+4 X X                
+5                    
+6                    
+7                    
+8                    
+9                    
+Enter coordinates to attack (x y): 0 0
+Hit!
+  0 1 2 3 4 5 6 7 8 9
+0 X X X X X          
+1 X X X X            
+2 X X X              
+3 X X X              
+4 X X                
+5                    
+6                    
+7                    
+8                    
+9                    
+Enter coordinates to attack (x y): 5 5
+Miss!
+  0 1 2 3 4 5 6 7 8 9
+0 X X X X X          
+1 X X X X            
+2 X X X              
+3 X X X              
+4 X X                
+5         O          
+6                    
+7                    
+8                    
+9                    
+```
 ## Contributing
 Feel free to submit issues or pull requests to improve the game!
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the LICENSE file for details.
