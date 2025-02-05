@@ -10,6 +10,7 @@ export class Ship {
     }
 
     hit(x: number, y: number): boolean {
+        console.log('Coordinates:', this.coordinates);
         const coord = `${x},${y}`;
         if (this.coordinates.some(c => c.x === x && c.y === y)) {
             this.hits.add(coord);

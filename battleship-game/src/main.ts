@@ -1,5 +1,6 @@
 import { Player } from './game/player';
 import Board from './game/board';
+import Ship from './game/ship';
 import * as readline from 'readline';
 
 class Game {
@@ -12,7 +13,8 @@ class Game {
         this.player = new Player(playerName);
         this.rl = readline.createInterface({
             input: process.stdin,
-            output: process.stdout
+            output: process.stdout,
+            terminal: true
         });
         this.initializeGame();
     }
@@ -39,7 +41,7 @@ class Game {
 
             const ship = ships[index];
             this.rl.question(`Place your ${ship.name} (length ${ship.length}). Enter start coordinates (x y) and orientation (h/v): `, (input) => {
-                const [x, y, orientation] = input.split(' ');
+                const [x, y, orientation] = input.trim().split(/\s+/);
                 const startX = parseInt(x);
                 const startY = parseInt(y);
                 const isHorizontal = orientation === 'h';
@@ -67,7 +69,7 @@ class Game {
 
     private startGameLoop() {
         this.rl.question('Enter coordinates to attack (x y): ', (input) => {
-            const [x, y] = input.split(' ').map(Number);
+            const [x, y] = input.trim().split(/\s+/).map(Number);
             const hit = this.player.makeMove(this.board, { x, y });
 
             console.log(hit ? 'Hit!' : 'Miss!');
@@ -83,7 +85,8 @@ class Game {
 
 const rl = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
+    terminal: true
 });
 
 rl.question("Enter your name: ", (name) => {
