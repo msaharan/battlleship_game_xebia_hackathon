@@ -78,3 +78,6 @@ Feel free to submit issues or pull requests to improve the game!
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Authors
+Mohit Saharan, Alexandros Xenakis, GitHub Copilot
